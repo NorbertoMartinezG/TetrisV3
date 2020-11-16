@@ -1,5 +1,8 @@
 #pragma once
 #include "GL\glut.h"
+#include <iostream>
+
+using namespace std;
 
 
 
@@ -21,6 +24,7 @@ public:
 
 private:
 	static int h , w ;
+	static float fps;
 
 };
 
