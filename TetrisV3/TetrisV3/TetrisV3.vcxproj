@@ -143,10 +143,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cuadrado.cpp" />
     <ClCompile Include="juego.cpp" />
     <ClCompile Include="TetrisV3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cuadrado.h" />
     <ClInclude Include="juego.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

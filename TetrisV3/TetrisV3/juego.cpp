@@ -27,7 +27,10 @@ void juego::iniciar()
 {
 	glClearColor(0, 0, 0, 0.1);
 
-	glOrtho(w, 0, h, 0, -1, 1);  
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	
+	glOrtho(0, w, 0, h, -1, 1);
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -35,14 +38,33 @@ void juego::iniciar()
 
 }
 
+void juego::dibujar_tablero()
+{
+	glPushMatrix();
+
+	glTranslated(-150, 300, 0); //despues de encontrarse en el centro de la pantalla se reposiciona al punto superior izq de pantalla 
+
+	glColor3f(1, 1, 1);
+	glBegin(GL_QUAD_STRIP); // dibujando rectangulo central
+	glVertex2f(0, 0);
+	glVertex2f(300, 0);
+	glVertex2f(0, -600);
+	glVertex2f(300, -600);
+	glEnd(); // terminando dibujado de rectangulo y central y volviendo a posicion original
+
+	glPopMatrix();
+
+}
+
 
 void juego::dibujar()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	cout << "Si actualiza a 60 fps" << endl;
-	//glPushMatrix();
-	//glTranslatef(w / 2, h / 2, 0); // reposicionando en el centro
-	//dibujar_tablero();
+	//cout << "Si actualiza a 60 fps" << endl;
+	glPushMatrix();
+	glTranslatef(w / 2, h / 2, 0); // reposicionando en el centro
+	
+	dibujar_tablero();
 
 	////dibujando cuadrado
 	////cuadrado* ob1 = new cuadrado();
@@ -55,7 +77,7 @@ void juego::dibujar()
 	///*objeto1.dibujar();*/
 
 
-	//glPopMatrix();
+	glPopMatrix();
 
 
 	glutSwapBuffers(); //muestra
