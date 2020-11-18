@@ -3,6 +3,7 @@
 int juego::h = 600;
 float juego::fps = 60.f;
 int juego::w = 800;
+cuadrado juego::objeto1;// manda llamar el objeto de la clase cuadrado a travez de juego.h
 //cuadrado* ob1 = new cuadrado(); //extraer variable directamente de clase 
 //figura* pieza = new figura(rand() % 6 + 1); // extraido directamente de figura.h sin declarar la variable en figura.h sino aqui directamente
 //list<cuadrado> cuadradosList;
@@ -66,16 +67,10 @@ void juego::dibujar()
 	
 	dibujar_tablero();
 
-	////dibujando cuadrado
-	////cuadrado* ob1 = new cuadrado();
-	////ob1->dibujar();
-	////pieza->dibujar();
-
-	////RECORRER LISTA
-	//dibujar_cuadrados();
-
-	///*objeto1.dibujar();*/
-
+	//dibujando cuadrado
+	objeto1.dibujar();
+	//objeto1.actualizar(); // esta instruccion se llevo a objeto1.dibujar();
+	
 
 	glPopMatrix();
 
@@ -93,9 +88,18 @@ void juego::actualizar()
 {
 	static float tiempo_transcurrido = 0;
 	
+	static float actualizar_cuadrado = 0;
 	
 	if (glutGet(GLUT_ELAPSED_TIME) - (tiempo_transcurrido + 1.f/fps) > 0)
 	{
+		if (glutGet(GLUT_ELAPSED_TIME) > actualizar_cuadrado + 1000.f) // actualiza posicion del cuadrado cada 1 segundo
+		{
+			actualizar_cuadrado = glutGet(GLUT_ELAPSED_TIME);
+			objeto1.actualizar();
+		}
+
+
+
 
 		tiempo_transcurrido = glutGet(GLUT_ELAPSED_TIME);
 		glutPostRedisplay();

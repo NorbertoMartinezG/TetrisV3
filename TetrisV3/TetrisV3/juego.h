@@ -1,5 +1,6 @@
 #pragma once
 #include "GL\glut.h"
+#include "cuadrado.h" // para dibujar los cuadrados
 #include <iostream>
 
 using namespace std;
@@ -25,6 +26,7 @@ public:
 private:
 	static int h , w ;
 	static float fps;
+	static cuadrado objeto1; 
 
 };
 

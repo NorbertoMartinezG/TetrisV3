@@ -8,6 +8,9 @@ public:
 	void dibujar();
 	void set_x(double x) { pos_x = x; } //define posicion que es pasada
 	void set_y(double y) { pos_x = y; }
+
+	void actualizar(); // actualiza el cuadrado para que vaya cayendo
+
 	double get_x() { return pos_x; } // retorna posiciones
 	double get_y() { return pos_y; }
 
