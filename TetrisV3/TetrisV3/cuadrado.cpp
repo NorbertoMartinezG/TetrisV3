@@ -3,7 +3,7 @@
 
 cuadrado::cuadrado()
 {
-	pos_y = 300;
+	pos_y = 330;
 	pos_x = 0;
 
 }
