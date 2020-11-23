@@ -3,7 +3,7 @@
 int juego::h = 600;
 float juego::fps = 60.f;
 int juego::w = 800;
-cuadrado juego::objeto1;// manda llamar el objeto de la clase cuadrado a travez de juego.h
+figura juego::ele(5);// manda llamar el objeto de la clase cuadrado a travez de juego.h
 //cuadrado* ob1 = new cuadrado(); //extraer variable directamente de clase 
 //figura* pieza = new figura(rand() % 6 + 1); // extraido directamente de figura.h sin declarar la variable en figura.h sino aqui directamente
 //list<cuadrado> cuadradosList;
@@ -68,7 +68,7 @@ void juego::dibujar()
 	dibujar_tablero();
 
 	//dibujando cuadrado
-	objeto1.dibujar();
+	ele.dibujar();
 	//objeto1.actualizar(); // esta instruccion se llevo a objeto1.dibujar();
 	
 
@@ -95,7 +95,7 @@ void juego::actualizar()
 		if (glutGet(GLUT_ELAPSED_TIME) > actualizar_cuadrado + 1000.f) // actualiza posicion del cuadrado cada 1 segundo
 		{
 			actualizar_cuadrado = glutGet(GLUT_ELAPSED_TIME);
-			objeto1.actualizar();
+			ele.actualizar();
 		}
 
 

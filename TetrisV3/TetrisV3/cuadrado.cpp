@@ -14,7 +14,7 @@ void cuadrado::dibujar()
 
 	glTranslatef(pos_x, pos_y, 0); // traslada el dibujo a la posicion inicial
 
-	glColor3f(0, 0, 1); //color del cuadrito
+	//glColor3f(0, 0, 1); //color del cuadrito
 
 	glBegin(GL_QUAD_STRIP);
 	glVertex2f(0, 0);

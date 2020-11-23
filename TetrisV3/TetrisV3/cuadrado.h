@@ -6,8 +6,8 @@ class cuadrado
 public:
 	cuadrado(); // constructor
 	void dibujar();
-	void set_x(double x) { pos_x = x; } //define posicion que es pasada
-	void set_y(double y) { pos_x = y; }
+	void set_x(double x) { pos_x += x; } //define posicion que es pasada
+	void set_y(double y) { pos_y += y; }
 
 	void actualizar(); // actualiza el cuadrado para que vaya cayendo
 
