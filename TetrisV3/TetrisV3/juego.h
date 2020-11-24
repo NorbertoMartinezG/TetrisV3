@@ -21,12 +21,13 @@ public:
 	int exportar_ancho();
 	static void dibujar_cuadrados(); //
 	static void chequear_colision();
+	
 
 
 private:
 	static int h , w ;
 	static float fps;
-	static figura ele; 
+	static figura pieza; 
 
 };
 

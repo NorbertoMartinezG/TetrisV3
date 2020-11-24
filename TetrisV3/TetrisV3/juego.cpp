@@ -3,7 +3,7 @@
 int juego::h = 600;
 float juego::fps = 60.f;
 int juego::w = 800;
-figura juego::ele(5);// manda llamar el objeto de la clase cuadrado a travez de juego.h
+figura juego::pieza(5);// manda llamar el objeto de la clase cuadrado a travez de juego.h
 //cuadrado* ob1 = new cuadrado(); //extraer variable directamente de clase 
 //figura* pieza = new figura(rand() % 6 + 1); // extraido directamente de figura.h sin declarar la variable en figura.h sino aqui directamente
 //list<cuadrado> cuadradosList;
@@ -26,7 +26,7 @@ juego::juego()
 
 void juego::iniciar()
 {
-	glClearColor(0, 0, 0, 0.1);
+	glClearColor(0.5, 0, 0, 0.1);
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -45,7 +45,7 @@ void juego::dibujar_tablero()
 
 	glTranslated(-150, 300, 0); //despues de encontrarse en el centro de la pantalla se reposiciona al punto superior izq de pantalla 
 
-	glColor3f(1, 1, 1);
+	glColor3f(0, 0, 0);
 	glBegin(GL_QUAD_STRIP); // dibujando rectangulo central
 	glVertex2f(0, 0);
 	glVertex2f(300, 0);
@@ -68,7 +68,7 @@ void juego::dibujar()
 	dibujar_tablero();
 
 	//dibujando cuadrado
-	ele.dibujar();
+	pieza.dibujar();
 	//objeto1.actualizar(); // esta instruccion se llevo a objeto1.dibujar();
 	
 
@@ -78,9 +78,29 @@ void juego::dibujar()
 	glutSwapBuffers(); //muestra
 }
 
-void juego::procesar_teclado(unsigned char p, int x, int y)
+void juego::procesar_teclado(unsigned char c, int x, int y)
 {
+	switch (c)
+	{
+	case 'A': case 'a':
+		pieza.set_x(-30); //mueve la figura a lado izquierdo la funcion viene desde cuadrado.h
+	
+		break;
 
+	case 'D': case 'd':
+		pieza.set_x(30);//mueve la figura a lado derecho
+		break;
+
+	case 'S': case 's':
+		pieza.set_y(-30);//mueve la figura a hacia abajo
+		break;
+
+	case ' ':
+		pieza.rotar();
+
+	default:
+		break;
+	}
 
 }
 
@@ -95,7 +115,7 @@ void juego::actualizar()
 		if (glutGet(GLUT_ELAPSED_TIME) > actualizar_cuadrado + 1000.f) // actualiza posicion del cuadrado cada 1 segundo
 		{
 			actualizar_cuadrado = glutGet(GLUT_ELAPSED_TIME);
-			ele.actualizar();
+			pieza.actualizar();
 		}
 
 
