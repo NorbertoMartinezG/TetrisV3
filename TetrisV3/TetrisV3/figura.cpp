@@ -4,6 +4,8 @@ figura::figura(unsigned short num)
 {
 	id = num;
 	rotacion = 1;
+	pos_x = 0;
+	pos_y = 300;
 
 	switch (id)
 	{
@@ -54,11 +56,13 @@ figura::figura(unsigned short num)
 
 void figura::actualizar()
 {
-	for (int i = 0; i < 4; i++)
-	{
-		cuadrados[i].actualizar(); // llama a funcion actulizar de la clase cuadrado no se refiere a la de esta clase
-	}
-
+	
+	//llama a la funcion que hace caer el cuadrito pero ya no sera necesaria ya que se le indicara en la funcion actualizar de esta clase que vaya cayendo
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	cuadrados[i].actualizar(); // llama a funcion actulizar de la clase cuadrado no se refiere a la de esta clase
+	//}
+	pos_y -= 30; // va sumando menos 30 a la posicion
 	
 }
 
@@ -88,8 +92,10 @@ void figura::dibujar()
 		break;
 	}
 
-	glPushMatrix();
-	switch (rotacion)
+	// ROTACION DE MATRIZ que contiene a la figura
+	
+	/* // esto se traslado a cuadrado.cpp para rotar los cuadrados no la figura.
+	switch (rotacion) 
 	{
 	case 2:
 		glRotatef(90.0, 0, 0, 1);
@@ -103,33 +109,43 @@ void figura::dibujar()
 
 	default:
 		break;
-	}
+	}*/
 
+	//creando nueva posicion de matriz para que dibuje
+	glPushMatrix();
+	glTranslatef(pos_x, pos_y, 0);
 
 	for (int i = 0; i < 4; i++)
 	{
 		cuadrados[i].dibujar(); // llama a funcion dibujar de la clase cuadrado no se refiere a la de esta clase
 	}
-	glPopMatrix();
+	
+	glPopMatrix(); // cierra matriz
 
 }
 
 void figura::set_x(double x)
 {
-	for (int i = 0; i < 4; i++)
-	{
-		cuadrados[i].set_x(x); // modifica la posicion de los cuadrados para que se muevan a derecha o izquierda
-	}
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	cuadrados[i].set_x(x); // modifica la posicion de los cuadrados para que se muevan a derecha o izquierda
+	//}
+	// SE MOVIA LA MATRIZ CUADRITOS PERO CAMBIAN LAS FLECHAS DE POSICION TAMBIEN
+	// POR ESO ES MEJOR MOVER LA MATRIZ FIGURA PARA QUE LAS FLECHAS NO CAMBIEN AL ROTAR
+	pos_x += x;
+
 
 }
 
 void figura::set_y(double y)
 {
-	for (int i = 0; i < 4; i++)
-	{
-		cuadrados[i].set_y(y); // modifica la posicion de los cuadrados para que se mueva arriba o abajo, en este caso solo abajo
-	}
-
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	cuadrados[i].set_y(y); // modifica la posicion de los cuadrados para que se mueva arriba o abajo, en este caso solo abajo
+	//}
+	// SE MOVIA LA MATRIZ CUADRITOS PERO CAMBIAN LAS FLECHAS DE POSICION TAMBIEN
+	// POR ESO ES MEJOR MOVER LA MATRIZ FIGURA PARA QUE LAS FLECHAS NO CAMBIEN AL ROTAR
+	pos_y += y;
 
 
 }
@@ -138,5 +154,9 @@ void figura::rotar()
 {
 	rotacion++;
 	if (rotacion > 4) rotacion = 1;
+	for (int i = 0; i < 4; i++)
+	{
+		cuadrados[i].set_rotacion(rotacion);
+	}
 	
 }

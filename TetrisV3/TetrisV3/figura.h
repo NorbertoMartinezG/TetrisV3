@@ -17,6 +17,8 @@ private:
 	cuadrado cuadrados[4];
 	unsigned short id;
 	unsigned short rotacion;
+	double pos_x;
+	double pos_y;
 
 
 
