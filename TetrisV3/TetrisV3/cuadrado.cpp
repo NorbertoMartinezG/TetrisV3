@@ -35,10 +35,19 @@ void cuadrado::dibujar()
 	//glColor3f(0, 0, 1); //color del cuadrito
 
 	glBegin(GL_QUAD_STRIP);
-	glVertex2f(0, 0);
+	
+	
+	/*glVertex2f(0, 0); // se modifico para que las colisiones siguieran la metrica del rombo
 	glVertex2f(30, 0);
 	glVertex2f(0, 30);
-	glVertex2f(30, 30);
+	glVertex2f(30, 30);*/
+	
+	// redibujando el cuadrito base para que sea central y no empieze en una esquina como el anterior
+	glVertex2f(-15, -15);
+	glVertex2f(15, -15);
+	glVertex2f(-15, 15);
+	glVertex2f(15, 15);
+
 	glEnd();
 
 

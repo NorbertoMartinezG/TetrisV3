@@ -4,8 +4,11 @@ figura::figura(unsigned short num)
 {
 	id = num;
 	rotacion = 1;
-	pos_x = 0;
-	pos_y = 300;
+	//pos_x = 0;
+	pos_x = 15; //se modifico el anterior para que el cuadrito central de 15 colisione exactamente con el area de juego
+	//pos_y = 300;
+	//se modifico el anterior para que el cuadrito central de 15 colisione exactamente con el area de juego
+	pos_y = 345;
 
 	switch (id)
 	{
@@ -62,7 +65,14 @@ void figura::actualizar()
 	//{
 	//	cuadrados[i].actualizar(); // llama a funcion actulizar de la clase cuadrado no se refiere a la de esta clase
 	//}
-	pos_y -= 30; // va sumando menos 30 a la posicion
+	//pos_y -= 30; // va sumando menos 30 a la posicion
+
+	// creando colision limitando el desplazamiento hacia abajo
+	if (pos_y > -285)
+	{
+		pos_y -= 30;
+	}
+
 	
 }
 
@@ -132,7 +142,23 @@ void figura::set_x(double x)
 	//}
 	// SE MOVIA LA MATRIZ CUADRITOS PERO CAMBIAN LAS FLECHAS DE POSICION TAMBIEN
 	// POR ESO ES MEJOR MOVER LA MATRIZ FIGURA PARA QUE LAS FLECHAS NO CAMBIEN AL ROTAR
-	pos_x += x;
+	//pos_x += x;
+
+	//creando limites a los lados (colision)
+	if (x > 0)
+	{
+		if (pos_x < 135)
+		{
+			pos_x += x;
+		}
+	}
+	else
+	{
+		if (pos_x > -135)
+		{
+			pos_x += x;
+		}
+	}
 
 
 }
@@ -145,7 +171,12 @@ void figura::set_y(double y)
 	//}
 	// SE MOVIA LA MATRIZ CUADRITOS PERO CAMBIAN LAS FLECHAS DE POSICION TAMBIEN
 	// POR ESO ES MEJOR MOVER LA MATRIZ FIGURA PARA QUE LAS FLECHAS NO CAMBIEN AL ROTAR
-	pos_y += y;
+	
+	// creando colision limitando el desplazamiento hacia abajo
+	if (pos_y >-285)
+	{
+		pos_y += y;
+	}
 
 
 }

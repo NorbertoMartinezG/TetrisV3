@@ -3,7 +3,7 @@
 int juego::h = 600;
 float juego::fps = 60.f;
 int juego::w = 800;
-figura juego::pieza(5);// manda llamar el objeto de la clase cuadrado a travez de juego.h
+figura juego::pieza(3);// manda llamar el objeto de la clase cuadrado a travez de juego.h
 //cuadrado* ob1 = new cuadrado(); //extraer variable directamente de clase 
 //figura* pieza = new figura(rand() % 6 + 1); // extraido directamente de figura.h sin declarar la variable en figura.h sino aqui directamente
 //list<cuadrado> cuadradosList;
