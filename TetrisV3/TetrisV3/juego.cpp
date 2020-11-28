@@ -12,7 +12,7 @@ list<cuadrado> juego::cuadradosLista;
 juego::juego()
 {
 	srand(time(NULL)); // toma la hora del sistema para generar numeros aleatorios tuto33
-
+	pieza = figura(rand() % 6 + 1);
 	
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE); //inicializa con doble bufer
 	glutInitWindowPosition(50, 50); // posicion inicial
@@ -136,7 +136,7 @@ void juego::actualizar()
 			{
 				for (int i = 0; i < 4; i++)
 				{
-					cuadradosLista.push_back(cuadrado(pieza.get_x(i),pieza.get_y(i)-285)); // a cuadradosList le vamos a agregar un objeto cuadrado
+					cuadradosLista.push_back(cuadrado(pieza.get_x(i),pieza.get_y(i) )); // a cuadradosList le vamos a agregar un objeto cuadrado
 				}
 				pieza = figura(rand()%6+1); // se crea nueva figura aleatoria de 1 a 6
 			}

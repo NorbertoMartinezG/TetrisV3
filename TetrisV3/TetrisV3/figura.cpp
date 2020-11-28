@@ -93,7 +93,7 @@ void figura::dibujar()
 {
 	// cuadrados[0] mantiene su posicion
 	
-	switch (id)
+	switch (id) // asigna el color dependiendo de la figura que se va a dibujar
 	{
 	case 1:
 		glColor3f(1, 1, 0);
@@ -109,6 +109,10 @@ void figura::dibujar()
 		break;
 	case 5:
 		glColor3f(1, 0, 0);
+		break;
+
+	case 6:
+		glColor3f(0, 1, 0);
 		break;
 		
 	default:

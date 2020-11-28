@@ -12,8 +12,8 @@ public:
 	void set_y(double y);
 	void rotar(); // rota toda la figura
 
-	double get_x(unsigned short num) { return cuadrados[num].get_x(); }
-	double get_y(unsigned short num) { return cuadrados[num].get_y(); }
+	double get_x(unsigned short num) { return cuadrados[num].get_x() + pos_x; }
+	double get_y(unsigned short num) { return cuadrados[num].get_y() + pos_y; }
 
 
 private:
