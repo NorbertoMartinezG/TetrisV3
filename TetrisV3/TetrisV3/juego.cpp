@@ -3,14 +3,16 @@
 int juego::h = 600;
 float juego::fps = 60.f;
 int juego::w = 800;
-figura juego::pieza(3);// manda llamar el objeto de la clase cuadrado a travez de juego.h
+figura juego::pieza(rand() % 6 + 1);// manda llamar el objeto de la clase cuadrado a travez de juego.h
 //cuadrado* ob1 = new cuadrado(); //extraer variable directamente de clase 
 //figura* pieza = new figura(rand() % 6 + 1); // extraido directamente de figura.h sin declarar la variable en figura.h sino aqui directamente
-//list<cuadrado> cuadradosList;
+list<cuadrado> juego::cuadradosLista;
 
 
 juego::juego()
 {
+	srand(time(NULL)); // toma la hora del sistema para generar numeros aleatorios tuto33
+
 	
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE); //inicializa con doble bufer
 	glutInitWindowPosition(50, 50); // posicion inicial
@@ -19,7 +21,7 @@ juego::juego()
 	
 	glutDisplayFunc(dibujar); // funcion para dibujar
 	glutKeyboardFunc(procesar_teclado);
-	glutIdleFunc(actualizar); // funcion actualizar
+	glutIdleFunc(actualizar); // funcion actualizar 
 	iniciar(); // iniciar model matriz y perspectivas
 
 }
@@ -57,6 +59,16 @@ void juego::dibujar_tablero()
 
 }
 
+void juego::dibujar_cuadradosList()
+{
+	list<cuadrado>::iterator p = cuadradosLista.begin(); //recorrer lista para volver a dibujar piezas que llegaron al piso
+	while (p != cuadradosLista.end()) // mientras p no sea el ultimo objeto del cuadrado entonces
+	{
+		p->dibujar(); // cast por que es dinamico
+		p++;
+	}
+}
+
 
 void juego::dibujar()
 {
@@ -71,6 +83,9 @@ void juego::dibujar()
 	pieza.dibujar();
 	//objeto1.actualizar(); // esta instruccion se llevo a objeto1.dibujar();
 	
+	// PARA DIBUJAR LAS PIEZAS QUE LLEGARON AL FINAL DEL ESPACIO EN EL TETRIS Y QUE SE GUARDARON EN UNA LISTA
+	dibujar_cuadradosList();
+
 
 	glPopMatrix();
 
@@ -115,7 +130,16 @@ void juego::actualizar()
 		if (glutGet(GLUT_ELAPSED_TIME) > actualizar_cuadrado + 1000.f) // actualiza posicion del cuadrado cada 1 segundo
 		{
 			actualizar_cuadrado = glutGet(GLUT_ELAPSED_TIME);
-			pieza.actualizar();
+			
+			// TUTORIAL 32 SE COMPLICA --------
+			if (pieza.actualizar()) // se se activa la colision de la funcion actualizar de la clase figura
+			{
+				for (int i = 0; i < 4; i++)
+				{
+					cuadradosLista.push_back(cuadrado(pieza.get_x(i),pieza.get_y(i)-285)); // a cuadradosList le vamos a agregar un objeto cuadrado
+				}
+				pieza = figura(rand()%6+1); // se crea nueva figura aleatoria de 1 a 6
+			}
 		}
 
 

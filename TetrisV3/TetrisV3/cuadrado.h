@@ -5,6 +5,7 @@ class cuadrado
 {
 public:
 	cuadrado(); // constructor
+	cuadrado(double x, double y) { pos_x = x, pos_y = y; } // constructor para pasar posiciones que seran guardadas en la lista cuadradosList
 	void dibujar();
 	void set_x(double x) { pos_x += x; } //define posicion que es pasada
 	void set_y(double y) { pos_y += y; }

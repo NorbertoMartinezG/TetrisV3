@@ -49,6 +49,12 @@ figura::figura(unsigned short num)
 		//cuadrados[3].set_y(-30);
 		break;
 
+	case 6: // ESE
+		cuadrados[1].set_x(-30);
+		cuadrados[2].set_y(30);
+		cuadrados[3].set_x(30);
+		cuadrados[3].set_y(30);
+		break;
 
 	default:
 		break;
@@ -57,7 +63,7 @@ figura::figura(unsigned short num)
 
 }
 
-void figura::actualizar()
+bool figura::actualizar()
 {
 	
 	//llama a la funcion que hace caer el cuadrito pero ya no sera necesaria ya que se le indicara en la funcion actualizar de esta clase que vaya cayendo
@@ -68,11 +74,18 @@ void figura::actualizar()
 	//pos_y -= 30; // va sumando menos 30 a la posicion
 
 	// creando colision limitando el desplazamiento hacia abajo
+	bool colisionPiso = false;
+	
 	if (pos_y > -285)
 	{
 		pos_y -= 30;
 	}
+	else
+	{
+		colisionPiso = true;
+	}
 
+	return colisionPiso;
 	
 }
 
@@ -172,12 +185,15 @@ void figura::set_y(double y)
 	// SE MOVIA LA MATRIZ CUADRITOS PERO CAMBIAN LAS FLECHAS DE POSICION TAMBIEN
 	// POR ESO ES MEJOR MOVER LA MATRIZ FIGURA PARA QUE LAS FLECHAS NO CAMBIEN AL ROTAR
 	
-	// creando colision limitando el desplazamiento hacia abajo
+	// creando colision limitando el desplazamiento hacia abajo // LIMITE SUELO
+	
+	
+	
 	if (pos_y >-285)
 	{
 		pos_y += y;
 	}
-
+	
 
 }
 

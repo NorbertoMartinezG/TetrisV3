@@ -2,6 +2,8 @@
 #include "GL\glut.h"
 #include "figura.h" // para dibujar los cuadrados
 #include <iostream>
+#include <list>
+#include <ctime>
 
 using namespace std;
 
@@ -17,6 +19,8 @@ public:
 	static void actualizar();
 	static void iniciar();// iniciar model matriz y perspectivas
 	static void dibujar_tablero();
+	static void dibujar_cuadradosList();
+
 	int exportar_alto();
 	int exportar_ancho();
 	static void dibujar_cuadrados(); //
@@ -28,6 +32,7 @@ private:
 	static int h , w ;
 	static float fps;
 	static figura pieza; 
+	static list<cuadrado> cuadradosLista; //lista de objetos cuadradaditos que se van almacenando en la pantalla
 
 };
 
