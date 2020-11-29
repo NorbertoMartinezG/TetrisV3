@@ -1,4 +1,9 @@
 #include "figura.h"
+#include <cmath>
+#include <iostream>
+using namespace std;
+
+
 
 figura::figura(unsigned short num)
 {
@@ -210,4 +215,19 @@ void figura::rotar()
 		cuadrados[i].set_rotacion(rotacion);
 	}
 	
+}
+
+// para calcular angulo global de cada uno de los cuadraditos
+double figura::get_angulo_cuadradito(unsigned short num)
+{
+
+	double angulo_cuadradito = atan2f(cuadrados[num].get_x(), cuadrados[num].get_y()); // obtiene rotacion de cada cuadradito // lo devuelve en radianes aun falta transformarlo con rad2deg
+	
+	cout << rad2deg(angulo_cuadradito) << endl;
+	
+	double rotacion_local = (rotacion - 1.0) * 90.0; // obtiene rotacion de la figura
+	
+	
+	
+	return angulo_cuadradito + rotacion_local;
 }

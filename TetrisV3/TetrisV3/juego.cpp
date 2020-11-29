@@ -112,6 +112,8 @@ void juego::procesar_teclado(unsigned char c, int x, int y)
 
 	case ' ':
 		pieza.rotar();
+		pieza.get_angulo_cuadradito(1);
+		break;
 
 	default:
 		break;
