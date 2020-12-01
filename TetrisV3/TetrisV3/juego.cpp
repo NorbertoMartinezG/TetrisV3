@@ -112,7 +112,13 @@ void juego::procesar_teclado(unsigned char c, int x, int y)
 
 	case ' ':
 		pieza.rotar();
-		pieza.get_angulo_cuadradito(1);
+		for (int i = 0; i < 4; i++) // obtener angulo global de cada cuadradito en grados 
+		{
+			pieza.calcular_posicion_x(i);
+			//cout << pieza.calcular_posicion_x(i) <<" esto es del case"<< endl;
+
+			//pieza.calcular_posicion_x(1);
+		}
 		break;
 
 	default:
@@ -138,7 +144,11 @@ void juego::actualizar()
 			{
 				for (int i = 0; i < 4; i++)
 				{
-					cuadradosLista.push_back(cuadrado(pieza.get_x(i),pieza.get_y(i) )); // a cuadradosList le vamos a agregar un objeto cuadrado
+					//cuadradosLista.push_back(cuadrado(pieza.get_x(i),pieza.get_y(i) )); // a cuadradosList le vamos a agregar un objeto cuadrado
+					cuadradosLista.push_back(cuadrado(pieza.calcular_posicion_x(i), pieza.calcular_posicion_y(i))); // a cuadradosList le vamos a agregar un objeto cuadradito de acuerdo a las posiciones globales calculadas en figura en base a los cuadraditos
+
+
+
 				}
 				pieza = figura(rand()%6+1); // se crea nueva figura aleatoria de 1 a 6
 			}

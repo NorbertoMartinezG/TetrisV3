@@ -221,13 +221,36 @@ void figura::rotar()
 double figura::get_angulo_cuadradito(unsigned short num)
 {
 
-	double angulo_cuadradito = atan2f(cuadrados[num].get_x(), cuadrados[num].get_y()); // obtiene rotacion de cada cuadradito // lo devuelve en radianes aun falta transformarlo con rad2deg
+	double angulo_cuadradito = atan2f(cuadrados[num].get_y(), cuadrados[num].get_x()); // obtiene rotacion de cada cuadradito // lo devuelve en radianes aun falta transformarlo con rad2deg
 	
-	cout << rad2deg(angulo_cuadradito) << endl;
+	//cout <<"angulo cuadradito " <<(angulo_cuadradito) << endl;
 	
 	double rotacion_local = (rotacion - 1.0) * 90.0; // obtiene rotacion de la figura
+
+	//cout << "rotacion local " << deg2rad(rotacion_local) << endl;
 	
+	//return rad2deg(angulo_cuadradito) + (rotacion_local); // obtener el valor de la rotacion en radianes para llevarlo a calcular posiciones globales del cuadradito en la sig. funcion
+	return angulo_cuadradito + deg2rad(rotacion_local); // obtener el valor de la rotacion en radianes para llevarlo a calcular posiciones globales del cuadradito en la sig. funcion
+}
+
+double figura::calcular_posicion_x(unsigned short num)
+{
+	double hipotenusa;
+
+	hipotenusa = sqrt(pow((cuadrados[num].get_x()), 2) + pow((cuadrados[num].get_y()), 2)) ; //suma posicion de la figura y la del cuadradito para aplicar arquimides
 	
-	
-	return angulo_cuadradito + rotacion_local;
+	//cout << "hipotenusa : "<<hipotenusa << endl;
+
+
+	return cos(get_angulo_cuadradito(num) ) * hipotenusa + pos_x;
+}
+
+double figura::calcular_posicion_y(unsigned short num)
+{
+	double hipotenusa;
+
+	hipotenusa = sqrt(pow((cuadrados[num].get_x()), 2) + pow((cuadrados[num].get_y()), 2)); //suma posicion de la figura y la del cuadradito para aplicar arquimides
+
+	return sin(get_angulo_cuadradito(num) ) * hipotenusa + pos_y; // EL SENO SE CALCULO EN RADIANES
+
 }

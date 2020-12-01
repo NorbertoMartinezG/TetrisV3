@@ -20,7 +20,13 @@ public:
 	//para calcular angulo de cuadraditos en la posicion global
 	double get_angulo_cuadradito(unsigned short num);
 
-	double rad2deg(double radianes) { return radianes * 180 / 3.14; } // 
+	float rad2deg(double radianes) { return radianes * 180.0 / 3.14; } // 
+	float deg2rad(double grados) { return grados * 3.14 / 180.0; } // convertir de grados a radianes
+
+
+	double calcular_posicion_x(unsigned short num); // calcula posicion global de cada cuadradito
+	double calcular_posicion_y(unsigned short num); // calcula posicion global de cada cuadradito
+
 
 private:
 	cuadrado cuadrados[4];
