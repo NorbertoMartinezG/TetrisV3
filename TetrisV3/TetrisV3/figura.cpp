@@ -79,6 +79,9 @@ bool figura::actualizar()
 	//pos_y -= 30; // va sumando menos 30 a la posicion
 
 	// creando colision limitando el desplazamiento hacia abajo
+	
+	
+	/* PARA COLISION SIMPLE CON PISO
 	bool colisionPiso = false;
 	
 	if (pos_y > -285)
@@ -91,7 +94,32 @@ bool figura::actualizar()
 	}
 
 	return colisionPiso;
-	
+	*/
+
+	// PARA COLISION ENTRE PISO Y DEMAS CUADRADITOS
+	bool colisionPiso = false;
+
+	for (int i = 0; i < 4; i++) // revisa que cada cuadrito de la figura ya colisiono o no
+	{
+		if ((int)calcular_posicion_y(i) > -280) // si la posicion llega al final(-285), todo con enteros, 280 ya que los numeros no son exactos
+		{
+			//cout << calcular_posicion_y(i) << endl;
+		}
+		else
+		{
+			cout << "hay colision con cuadradito " << i << endl;
+			colisionPiso = true;
+		}
+	}
+
+	if (!colisionPiso) // si no colisiono con el piso seguir moviendo
+	{
+		pos_y -= 30;
+	}
+
+	return colisionPiso;
+
+		
 }
 
 void figura::dibujar()
@@ -167,23 +195,56 @@ void figura::set_x(double x)
 	//pos_x += x;
 
 	//creando limites a los lados (colision)
+	//if (x > 0)
+	//{
+	//	if (pos_x < 135)
+	//	{
+	//		pos_x += x;
+	//	}
+	//}
+	//else
+	//{
+	//	if (pos_x > -135)
+	//	{
+	//		pos_x += x;
+	//	}
+	//}
+
+	bool hay_colision_horizontal = false;
+
 	if (x > 0)
 	{
-		if (pos_x < 135)
+		for (int i = 0; i < 4; i++)
 		{
-			pos_x += x;
+			if (abs((int)calcular_posicion_x(i) - 130) < 15)
+			{
+				hay_colision_horizontal = true;
+			}
+
 		}
 	}
 	else
 	{
-		if (pos_x > -135)
+		for (int i = 0; i < 4; i++)
 		{
-			pos_x += x;
+			if (abs((int)calcular_posicion_x(i) + 130) < 15)
+			{
+				hay_colision_horizontal = true;
+			}
+
 		}
+	}
+
+	if (!hay_colision_horizontal)
+	{
+		pos_x += x;
 	}
 
 
 }
+
+
+
 
 void figura::set_y(double y)
 {
@@ -198,7 +259,7 @@ void figura::set_y(double y)
 	
 	
 	
-	if (pos_y >-285)
+	if (pos_y > -280)
 	{
 		pos_y += y;
 	}
